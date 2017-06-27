@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/', 'HomeController@index');
+Route::post('/importExcel', 'HomeController@ImportExcel');

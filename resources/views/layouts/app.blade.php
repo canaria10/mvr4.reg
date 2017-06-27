@@ -3,6 +3,7 @@
 <head>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>MVR4</title>
 
@@ -102,13 +103,13 @@
                     <li>
                         <a href="user.html">
                             <i class="fa fa-flag-o"></i>
-                            <p>User Profile</p>
+                            <p>User Account</p>
                         </a>
                     </li>
                     <li>
                         <a href="table.html">
                             <i class="fa fa-list-alt"></i>
-                            <p>Table List</p>
+                            <p>Developer</p>
                         </a>
                     </li>
                 </ul>

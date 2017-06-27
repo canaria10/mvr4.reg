@@ -68,8 +68,14 @@
                         </div>
                     </div>
                 </div>
-
-
+                
+                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ url('/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="file" name="import_file" /> <br />
+                    <input type="text" name="description" /> <br />
+                    <button class="btn btn-primary">Import File</button>
+                </form>
+                <br />
 
                 <div class="row">
                     <div class="col-md-12">
