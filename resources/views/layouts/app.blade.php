@@ -75,9 +75,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                                            <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Registeration</a></li>
-                    
+                        <li><a href="{{ url('/login') }}">Login</a></li>
                        
                 </ul>
             </div>
@@ -88,32 +86,40 @@
     <div class="sidebar" data-color="red" data-image="assets/img/sidebar-5.jpg">
         <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="{{ url('/') }}" class="simple-text">
                         Million Volunteer Run 4
                     </a>
                 </div>
 
                 <ul class="nav">
-                    <li class="active">
-                        <a href="dashboard.html">
+                    <li class="">
+                        <a>
+                            <i class="fa fa-clock-o"></i>
+                            <?php $currentT = new DateTime() ?>
+                            <p>Date: {{ $currentT->format('Y-m-d') }}</p>
+                        </a>
+                    </li>
+                    <li class={{ $DashsideNav }} >
+                        <a href="{{ url('/') }}">
                             <i class="fa fa-pie-chart"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="">
                         <a href="user.html">
                             <i class="fa fa-flag-o"></i>
                             <p>User Account</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="table.html">
+                    <li class={{ $DevsideNav }}>
+                        <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                             <i class="fa fa-list-alt"></i>
                             <p>Developer</p>
                         </a>
                     </li>
+
                 </ul>
-            </div>
+        </div>
     </div>
 
      <div class="main-panel">
@@ -148,13 +154,7 @@
                                     </p>
                               </a>
                               <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li></li>
                               </ul>
                         </li>
                         <li>
@@ -200,21 +200,6 @@
     <script src="{{ asset('/assets/js/light-bootstrap-dashboard.js') }}"></script>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-
-            $.notify({
-                icon: 'pe-7s-gift',
-                message: "ADMIN: Welcome to <b>Million Volunteer Run 4!</b>"
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-        });
-    </script>
-
-    <script type="text/javascript">
          $(document).ready(function() {
             $('#tbrunner').DataTable({
                 "scrollX": true,
@@ -226,7 +211,7 @@
         } );
         
     </script>
-
+@yield('javascript')
 </body>
 
 

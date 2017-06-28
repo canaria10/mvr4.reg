@@ -3,12 +3,21 @@
 @section('content')
         <div class="content">
             <div class="container-fluid">
+             <div class="row">
+                <div class="col-md-12">
+                        <div class="card">
+                        <br />
+                        <h1 align="center"><b> {{ $intervalTime->format("%a DAYS TO GO!") }} </b></h1>
+                        <br />
+                        </div>
+                </div>
+             </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Current Outlets and Locations</h4>
-                                <!-- <p class="category">Last Campaign Performance</p> -->
+                                <p class="category">Update: {{ $latestDB->date_stored }}</p>
                             </div>
                             <div class="content">
                             <?php $i = 0 ?>
@@ -29,7 +38,7 @@
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Information</h4>
-                                <p class="category">36 Days to go!</p>
+                                <p class="category">Update: {{ $latestDB->date_stored }}</p>
                             </div>
                             <div class="content">
                                 <p> No. of Runners: {{ $run }} </p>
@@ -51,12 +60,13 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">List of Sponsors</h4>
-                                <p class="category">*Database Record Only!</p>
+                                <h4 class="title">List of Reports</h4>
+                                <p class="category"></p>
                             </div>
                             <div class="content">
-                                <p> No. of Runners: {{ $run }} </p>
-                                <p> No. of Remarks: {{ $rem }} </p>
+                                <p> UNAVAILABLE! </p>
+                                <b> 1. <a href={{ asset('reports/MASTER_MVR4_REG_LIST_DB.xlsx') }}>EXCEL MASTER DATABASE</a> <br />
+                                2. <a href={{ asset('reports/MASTER_MVR4_REG_LIST_DB.xlsx') }}>GAVA REPORT</a> : UNAVAILABLE </b>
                                 <div class="footer">
                                                                        
                                     <hr>
@@ -68,21 +78,13 @@
                         </div>
                     </div>
                 </div>
-                
-                <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ url('/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="file" name="import_file" /> <br />
-                    <input type="text" name="description" /> <br />
-                    <button class="btn btn-primary">Import File</button>
-                </form>
-                <br />
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">DATABASE : LIST OF RUNNERS</h4>
-                                <p class="category">ALL PAID AND CLAIMED</p>
+                                <p class="category">Update: {{ $latestDB->date_stored }}</p>
                             </div>
                             <br />
                             <div style="margin-left: 3px; margin-right: 3px;">
@@ -92,10 +94,20 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Registration Date</th>
+                                        <th>Bronze No</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Middle Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile No</th>
+                                        <th>School/Office/Organization</th>
+                                        <th>Registration Category</th>
+                                        <th>Race Category</th>
+                                        <th>Singlet Size</th>
+                                        <th>Mode of Payment</th>
+                                        <th>RaceBib No</th>
                                         <th>Location</th>
+                                        <th>Remarks</th>
                                     </tr>
                                 
                                 </thead>
@@ -104,10 +116,20 @@
                                         <tr>
                                             <th>{{ $item->NO }}</th>
                                             <th>{{ $item->REGISTRATION_DATE }}</th>
+                                            <th>{{ $item->BRONZE_NO }}</th>
                                             <th>{{ $item->FIRST_NAME }}</th>
                                             <th>{{ $item->LAST_NAME }}</th>
                                             <th>{{ $item->MIDDLE_NAME }}</th>
+                                            <th>{{ $item->EMAIL }}</th>
+                                            <th>{{ $item->MOBILE_NO }}</th>
+                                            <th>{{ $item->SCHOOL_OFFICE_ORGANIZATION }}</th>
+                                            <th>{{ $item->REGISTRATION_CATEGORY_500_350 }}</th>
+                                            <th>{{ $item->RACE_CATEGORY_3K_5K }}</th>
+                                            <th>{{ $item->SINGLET_SIZE }}</th>
+                                            <th>{{ $item->MODE_OF_PAYMENT }}</th>
+                                            <th>{{ $item->RACEBIB_NO }}</th>
                                             <th>{{ $item->REG_LOCATION }}</th>
+                                            <th>{{ $item->REMARKS }}</th>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -117,130 +139,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">Tasks</h4>
-                                <p class="category">Backend development</p>
-                            </div>
-                            <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox" checked="">
-                                                    </label>
-                                                </td>
-                                                <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Read "Following makes Medium better"</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" value="" data-toggle="checkbox">
-                                                    </label>
-                                                </td>
-                                                <td>Unfollow 5 enemies from twitter</td>
-                                                <td class="td-actions text-right">
-                                                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-
 
         <footer class="footer">
             <div class="container-fluid">
@@ -271,4 +172,43 @@
             </div>
         </footer>
 </div>
+                <!-- Modal Super User -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Super User</h4>
+                          </div>
+                          <div class="modal-body">
+                              <form action="{{ url('/SuperUser') }}" method="post">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <h3 align="center">PASSCODE: <input type="password" name="passdev"></h3>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary">Login</button>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+@endsection
+
+@section('javascript')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>Million Volunteer Run 4!</b>"
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+        });
+    </script>
 @endsection

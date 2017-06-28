@@ -18,4 +18,7 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/', 'HomeController@index');
-Route::post('/importExcel', 'HomeController@ImportExcel');
+Route::get('/developer', 'DeveloperController@index');
+
+Route::post('/importExcel', 'DeveloperController@ImportExcel');
+Route::post('/SuperUser', 'HomeController@SuperUser');
